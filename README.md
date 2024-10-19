@@ -20,7 +20,7 @@ This project provides a set of tools to enrich datasets using the Precisely API.
 ## Prerequisites
 
 - Python 3.x
-- Required Python packages: pandas, requests, tqdm
+- Required Python packages: pandas, requests, tqdm, requests, json, threading, base64
 
 ## Installation
 
