@@ -281,7 +281,7 @@ class dataProcessorForDemographics:
             self.create_combined_dataframe()
         return self.combined_df
 
-    def save_to_csv(self, filename='combined_precisely_data.csv'):
+    def save_to_csv(self, filename='./data/combined_precisely_data.csv'):
         if self.combined_df is None:
             self.create_combined_dataframe()
         
@@ -319,7 +319,7 @@ if __name__ == "__main__":
     # client_secret = input("Enter your client secret: ")
     client_id = "write your client id here"  # delete this or replace this with a dummy when sharing
     client_secret = "write your client secret here"  # delete this or replace this with a dummy when sharing
-    # df = pd.read_csv('./data/filtered_data.csv')[0:40] ### Rishika
+    df = pd.read_csv('./data/filtered_data.csv')[0:40] ### Rishika
     # df = pd.read_csv('./data/filtered_data.csv')[20001:40000] ### Vaishali
     # df = pd.read_csv('./data/filtered_data.csv')[40000:60000] ### Mirudula
     # df = pd.read_csv('./data/filtered_data.csv')[60000:75000] ### Manish
