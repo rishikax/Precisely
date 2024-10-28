@@ -1,37 +1,73 @@
 import pandas as pd
+import argparse
 
-# Load the dataset with 'low_memory=False' to avoid dtype warning
-file_path = 'merged_data_vaishali.csv'
-df = pd.read_csv(file_path, low_memory=False)
+class DataCleaner:
+    def __init__(self, file_path):
+        self.file_path = file_path
+        self.df = pd.read_csv(self.file_path, low_memory=False)
+    
+    def clean_data(self):
+        self.drop_na()
+        self.handle_missing_values()
+        self.convert_numeric_columns()
+        self.convert_date_columns()
+        self.remove_duplicates()
+        self.standardize_string_formatting()
+    
+    def drop_na(self):
+        """Drop rows with missing PBKEY."""
+        self.df = self.df.dropna(subset=['PBKEY'])
+    
+    def handle_missing_values(self):
+        """Fill missing values in numeric and categorical columns."""
+        numeric_cols = self.df.select_dtypes(include=['float64', 'int64']).columns
+        categorical_cols = self.df.select_dtypes(include=['object']).columns
+        
+        self.df.loc[:, numeric_cols] = self.df[numeric_cols].fillna(self.df[numeric_cols].median())
+        self.df.loc[:, categorical_cols] = self.df[categorical_cols].fillna(self.df[categorical_cols].mode().iloc[0])
+    
+    def convert_numeric_columns(self):
+        """Convert specified columns to numeric data types."""
+        cols_to_convert = ['PLUS4', 'GEOID', 'LAT', 'LON', 'flood_communityNumber', 
+                           'flood_addressLocationElevationFeet', 'flood_year100FloodZoneDistanceFeet', 
+                           'flood_year500FloodZoneDistanceFeet', 'flood_distanceToNearestWaterbodyFeet']
+        self.df.loc[:, cols_to_convert] = self.df[cols_to_convert].apply(pd.to_numeric, errors='coerce')
+    
+    def convert_date_columns(self):
+        """Convert specified columns to datetime format."""
+        date_cols = ['flood_mapEffectiveDate', 'flood_floodHazardBoundaryMapInitialDate', 
+                     'flood_floodInsuranceRateMapInitialDate']
+        self.df.loc[:, date_cols] = self.df[date_cols].apply(pd.to_datetime, errors='coerce', format='%d-%m-%Y')
+    
+    def remove_duplicates(self):
+        """Remove duplicate rows."""
+        self.df = self.df.drop_duplicates()
+    
+    def standardize_string_formatting(self):
+        """Standardize string formatting in categorical columns."""
+        categorical_cols = self.df.select_dtypes(include=['object']).columns
+        for col in categorical_cols:
+            self.df.loc[:, col] = self.df[col].astype(str).str.strip()
+    
+    def save_cleaned_data(self, output_path='../data/cleanedData.csv'):
+        """Save the cleaned DataFrame to a CSV file."""
+        self.df.to_csv(output_path, index=False)
+        print(f"Cleaned data saved to {output_path}")
 
-# Cleaning steps
-df_cleaned = df.dropna(subset=['PBKEY'])
+def main():
+    # Command line argument parsing
+    parser = argparse.ArgumentParser(description="Clean a dataset.")
+    parser.add_argument('dataframePath', type=str, help='Path to the CSV file to clean')
+    args = parser.parse_args()
 
-# Handling missing values with explicit loc usage to avoid SettingWithCopyWarning
-numeric_cols = df_cleaned.select_dtypes(include=['float64', 'int64']).columns
-categorical_cols = df_cleaned.select_dtypes(include=['object']).columns
+    # Instantiate the DataCleaner with the provided path
+    cleaner = DataCleaner(args.dataframePath)
+    
+    # Perform the cleaning process
+    cleaner.clean_data()
+    
+    # Save the cleaned data
+    cleaner.save_cleaned_data()
 
-df_cleaned.loc[:, numeric_cols] = df_cleaned[numeric_cols].fillna(df_cleaned[numeric_cols].median())
-df_cleaned.loc[:, categorical_cols] = df_cleaned[categorical_cols].fillna(df_cleaned[categorical_cols].mode().iloc[0])
-
-# Converting possible numeric columns to float with explicit loc usage
-cols_to_convert = ['PLUS4', 'GEOID', 'LAT', 'LON', 'flood_communityNumber', 
-                   'flood_addressLocationElevationFeet', 'flood_year100FloodZoneDistanceFeet', 
-                   'flood_year500FloodZoneDistanceFeet', 'flood_distanceToNearestWaterbodyFeet']
-df_cleaned.loc[:, cols_to_convert] = df_cleaned[cols_to_convert].apply(pd.to_numeric, errors='coerce')
-
-# Converting date columns to datetime format
-date_cols = ['flood_mapEffectiveDate', 'flood_floodHazardBoundaryMapInitialDate', 
-             'flood_floodInsuranceRateMapInitialDate']
-df_cleaned.loc[:, date_cols] = df_cleaned[date_cols].apply(pd.to_datetime, errors='coerce', format='%d-%m-%Y')
-
-# Removing duplicates
-df_cleaned = df_cleaned.drop_duplicates()
-
-# Standardizing string formatting with explicit loc usage
-for col in categorical_cols:
-    df_cleaned.loc[:, col] = df_cleaned[col].astype(str).str.strip()
-
-# Save the cleaned data
-output_path = 'final_cleaned_merged_data_vaishali_v2.csv'
-df_cleaned.to_csv(output_path, index=False)
+if __name__ == '__main__':
+    main()
