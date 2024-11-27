@@ -35,39 +35,60 @@ This project provides a set of tools to enrich datasets using the Precisely API.
    pip install pandas requests tqdm
    ```
 
-## Usage
+## User Manual
 
-### For Demographic, Flood Risk, and Coastal Risk Data
+Setting User environment:
 
-```python
-from precisely_data_enrichment import demographicsDataPrecisely, dataProcessorForDemographics
-
-client_id = "your_client_id"
-client_secret = "your_client_secret"
-df = pd.read_csv('your_data.csv')
-
-precisely_api = demographicsDataPrecisely(client_id, client_secret)
-results = precisely_api.process_dataframe(df)
-
-processor = dataProcessorForDemographics(results)
-combined_df = processor.get_dataframe()
-processor.save_to_csv('output_demographics.csv')
+1. MacOS/ Linux
+```
+python3 -m venv env
+source env/bin/activate
 ```
 
-### For Property, Parcel, and Building Data
-
-```python
-from precisely_data_enrichment import propertyDataPrecisely
-
-client_id = "your_client_id"
-client_secret = "your_client_secret"
-df = pd.read_csv('your_data.csv')
-
-api = propertyDataPrecisely(client_id, client_secret, sample_percentage=100)
-sampled_df = api.sample_data(df)
-enhanced_df = api.enhance_data(sampled_df)
-enhanced_df.to_csv("enriched_property_data.csv", index=False)
+2. For windows
 ```
+python -m venv env
+.\env\Scripts\activate
+```
+
+```pip install -r requirements.txt```
+
+1. Downloading the Data for Property Attributes:
+ Command Template:
+
+Command Template:
+
+Example 1:
+```
+python enhance_property_data.py --client_id YOUR_CLIENT_ID --client_secret YOUR_CLIENT_SECRET \
+--file_path path/to/input.csv --output_path path/to/output.csv \
+--start_row START_ROW --end_row END_ROW --sample_percentage SAMPLE_PERCENTAGE
+```
+Example 2:
+```
+python enhance_property_data.py --client_id abc123 --client_secret xyz789 \
+--file_path data/filtered_data.csv --output_path data/enriched_data.csv \
+--start_row 15000 --end_row 20000 --sample_percentage 100
+```
+Example 3:
+```
+python enhance_property_data.py --client_id YOUR_CLIENT_ID --client_secret YOUR_CLIENT_SECRET \
+--file_path path/to/input.csv --output_path path/to/output.csv \
+--start_row 1000 --end_row 2000 --sample_percentage 80
+```
+
+| Argument | Type | Required | Description |
+|----------|------|----------|-------------|
+| `--client_id` | string | Yes | Precisely API Client ID. |
+| `--client_secret` | string | Yes | Precisely API Client Secret. |
+| `--file_path` | string | Yes | Path to the input CSV file containing the property data. |
+| `--output_path` | string | Yes | Path where the enriched data will be saved. |
+| `--start_row` | int | No | Starting row index for processing (default is 0). |
+| `--end_row` | int | No | Ending row index for processing (default processes all rows from start). |
+| `--sample_percentage` | int | No | Percentage of data to sample (default is 100%). |
+
+
+For further analysis, please run throgh the ipynb notes to see the code, and analysis results with detailed explanation
 
 ## API Queries
 
@@ -76,6 +97,7 @@ The Precisely API is queried using GraphQL. The project includes several predefi
 1. **Psyte Geodemographics**
 2. **Coastal Risk**
 3. **Flood Risk**
+4.  **Property Data**: getPropertyAttributesbyAddress, getParcelbyAddress, getBuildingbyAddress
 
 These queries are sent to the Precisely API using the `get_response` method.
 
@@ -84,6 +106,7 @@ These queries are sent to the Precisely API using the `get_response` method.
 | `psyteGeodemographics` | Retrieves demographic categories, census data, income, and property types. |
 | `coastalRisk` | Retrieves information about the nearest coast and potential risk factors. |
 | `floodRisk` | Retrieves flood zone and risk details, including FEMA flood zones. |
+| `Property Data` | Retrieves property, building and parcel data based on address and PBKEY |
 
 ## Project Classes
 
