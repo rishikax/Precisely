@@ -158,10 +158,28 @@ The final output is saved as a CSV file. The table below describes some of the k
 | `coastal_nearestWaterbodyName` | Name of the nearest water body. |
 | `flood_floodZoneBaseFloodElevationFeet` | Elevation in feet for the base flood zone. |
 
+
+## Analysis Results
+
+#### Income and Demographics Analysis:
+
+The data reveals that the largest population segment falls in the Bottom 30-49.99% income bracket, while 85.5% of the population resides in urban areas. Property ownership patterns show that most properties are either mortgaged or rented, with single-family residences being the predominant housing type. Notably, over 15,000 households are in the Bottom 10-19.99% value bracket, and about 3,000 households are classified as 'Rustic Blue Collar', with only a small fraction falling under the 'Stylish Suburbs' category.
+
+#### Location and Property Value Analysis:
+
+The study demonstrates that location factors such as elevation and coastal distance have a stronger correlation with sale prices compared to property characteristics like the number of bedrooms or bathrooms. While single-family homes dominate the market across all size ranges, there's significant price variation within similar square footage, indicating that factors like location, condition, and amenities play crucial roles in determining property values. Urban development shows a clear preference for coastal proximity, with rural properties typically located further inland. Additionally, some of the highest-value properties are found at moderate elevations, suggesting a balance between coastal proximity and flood risk protection. The analysis also reveals that while income correlates with property value, there's significant overlap across income brackets, and even among top ZIP codes, there's considerable variation in both total property count and property type mix, with single-family homes consistently being the dominant type.
+
+#### Potential Customer Cluster Analysis:
+
+Moderate Economic Homes primarily dominate the market at 52.1%, while Luxury Estates and Mixed Properties comprise 40% of the market share. Premium Urban Homes (20,000 units) and Luxury Estates (9,300 units) are the leading segments, suggesting a clear opportunity for a two-tiered service strategy. Property values show an inverse relationship with customer volume, indicating the need for differentiated service approaches 
+
+- premium services for Luxury Estates (average value $2.8M) and volume-based packages for premium urban homes. Mixed Properties and Luxury Estates, with their large living spaces (23,434 and 18,313 sq ft, respectively), require comprehensive coverage solutions.
+
+
+#### Unserved Market and Service Strategy Analysis:
+
+A significant unserved market of 17,223 properties exists, with single-family homes comprising 41.5% of this segment, predominantly in lower-income brackets. Urban Mixed Housing represents 60.2% of the unserved market, followed by Large Unclassified Properties at 22.5%. The contrast between Luxury Urban Apartments ($4.2M value, 24,496 sq ft) and Large Unclassified Properties ($231K value, 17,253 sq ft) necessitates distinct service strategies. Property characteristics vary significantly across segments - from Urban Value homes (10,372 properties, $315K average value) requiring basic internet with competitive pricing, to rural properties (2,014 units) needing specialized solutions like satellite/wireless options and weather-resistant packages. The variation in bedroom count across segments (ranging from 4.1 in Unclassified Properties to 2.5 in Luxury Apartments) further emphasizes the need for customized coverage solutions based on household size and composition.
+
 ## Security Note
 
-This project requires a Precisely API client ID and secret. Never commit these credentials to your repository. Use environment variables or a secure secrets management system in production environments.
-
-## Disclaimer
-
-This project is not officially associated with Precisely. Use of the Precisely API is subject to Precisely's terms of service.
+This is a Capstone Project, under the guidance of Lebow School of Business.
