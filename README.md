@@ -165,9 +165,18 @@ The final output is saved as a CSV file. The table below describes some of the k
 
 The data reveals that the largest population segment falls in the Bottom 30-49.99% income bracket, while 85.5% of the population resides in urban areas. Property ownership patterns show that most properties are either mortgaged or rented, with single-family residences being the predominant housing type. Notably, over 15,000 households are in the Bottom 10-19.99% value bracket, and about 3,000 households are classified as 'Rustic Blue Collar', with only a small fraction falling under the 'Stylish Suburbs' category.
 
+![Average Sale Amount by Property Type](presentations&docs/avgSaleamtbyPT.png)
+![Coastal Distance by Urban Rural Class](presentations&docs/coastalDistancebyUrbanRuralClass.png)
+![Customer Count Distribution](presentations&docs/customer_count.png)
+
 #### Location and Property Value Analysis:
 
 The study demonstrates that location factors such as elevation and coastal distance have a stronger correlation with sale prices compared to property characteristics like the number of bedrooms or bathrooms. While single-family homes dominate the market across all size ranges, there's significant price variation within similar square footage, indicating that factors like location, condition, and amenities play crucial roles in determining property values. Urban development shows a clear preference for coastal proximity, with rural properties typically located further inland. Additionally, some of the highest-value properties are found at moderate elevations, suggesting a balance between coastal proximity and flood risk protection. The analysis also reveals that while income correlates with property value, there's significant overlap across income brackets, and even among top ZIP codes, there's considerable variation in both total property count and property type mix, with single-family homes consistently being the dominant type.
+
+### Property Analysis
+![Elevation vs Sales Analysis](presentations&docs/elevationvSSales.png)
+![Living Space Distribution](presentations&docs/living_space.png)
+![Market Distribution](presentations&docs/market_distribution.png)
 
 #### Potential Customer Cluster Analysis:
 
@@ -175,10 +184,17 @@ Moderate Economic Homes primarily dominate the market at 52.1%, while Luxury Est
 
 - premium services for Luxury Estates (average value $2.8M) and volume-based packages for premium urban homes. Mixed Properties and Luxury Estates, with their large living spaces (23,434 and 18,313 sq ft, respectively), require comprehensive coverage solutions.
 
+![Metrics Heatmap](presentations&docs/metrics_heatmap.png)
+![Multi-metric Analysis](presentations&docs/multi_metric.png)
+
 
 #### Unserved Market and Service Strategy Analysis:
 
 A significant unserved market of 17,223 properties exists, with single-family homes comprising 41.5% of this segment, predominantly in lower-income brackets. Urban Mixed Housing represents 60.2% of the unserved market, followed by Large Unclassified Properties at 22.5%. The contrast between Luxury Urban Apartments ($4.2M value, 24,496 sq ft) and Large Unclassified Properties ($231K value, 17,253 sq ft) necessitates distinct service strategies. Property characteristics vary significantly across segments - from Urban Value homes (10,372 properties, $315K average value) requiring basic internet with competitive pricing, to rural properties (2,014 units) needing specialized solutions like satellite/wireless options and weather-resistant packages. The variation in bedroom count across segments (ranging from 4.1 in Unclassified Properties to 2.5 in Luxury Apartments) further emphasizes the need for customized coverage solutions based on household size and composition.
+
+![Property Value Analysis](presentations&docs/propertyValueanalysis.png)
+![Property Type Distribution](presentations&docs/propertytypedistribution.png)
+![Unserved Market Analysis](presentations&docs/unserved_market.png)
 
 ## Security Note
 
